@@ -5,6 +5,7 @@ import Signup from "./pages/Auth/Signup";
 import Login from "./pages/Auth/Login";
 import Navbar from "./components/common/Navbar";
 import VerifyEmail from "./pages/Auth/VerifyEmail";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 
 function App() {
@@ -13,12 +14,12 @@ function App() {
       <Navbar />
 
 
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </div>
   );
