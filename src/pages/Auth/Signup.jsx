@@ -82,7 +82,7 @@ const Signup = () => {
           </p>
         </div>
         {/* Instructor/Student Tab */}
-        <div className="my-8 flex rounded-full bg-richblack-700 px-1 py-1 gap-2 w-fit">
+        <div className="my-8 flex rounded-full bg-richblack-700 px-1 py-1 gap-1 w-fit">
           {
             tabData.map((tab)=>(
               <button onClick={()=>setAccountType(tab.type)} key={tab.id} className={`${accountType === tab.type ? " bg-richblack-900 text-white":""} rounded-full px-8 py-[6px]`}>

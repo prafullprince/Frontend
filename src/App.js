@@ -6,6 +6,9 @@ import Login from "./pages/Auth/Login";
 import Navbar from "./components/common/Navbar";
 import VerifyEmail from "./pages/Auth/VerifyEmail";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import PrivateRoute from './components/common/PrivateRoute';
+import Dashboard from "./pages/Dashboard/Dashboard";
+import MyProfile from './pages/Dashboard/MyProfile';
 
 
 function App() {
@@ -20,6 +23,17 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/about" element={<AboutPage />} />
+
+        {/* privateRoutes */}
+        <Route element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }>
+          {/* route for all loggedin users */}
+          <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        </Route>
+
       </Routes>
     </div>
   );
