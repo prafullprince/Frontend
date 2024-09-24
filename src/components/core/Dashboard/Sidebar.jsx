@@ -14,7 +14,7 @@ const Sidebar = () => {
   const [confirmationModal,setConfirmationModal] = useState(null);
 
   return (
-    <div className="flex h-[calc(100vh-3.5rem)] max-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10 gap-6">
+    <div className="flex h-[calc(100vh-3.5rem)] min-w-[225px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10 gap-6">
       {/* sidebar links */}
       <div className={`flex flex-col ${confirmationModal ? "bg-opacity-20" : ""}`}>
         {sidebarLinks.map((sidebarLink) => {

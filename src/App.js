@@ -9,6 +9,9 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import PrivateRoute from './components/common/PrivateRoute';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyProfile from './pages/Dashboard/MyProfile';
+import Error from './pages/Error/Error';
+import AddCourse from "./pages/Dashboard/AddCourse";
+import MyCourse from "./pages/Dashboard/MyCourse";
 
 
 function App() {
@@ -31,9 +34,12 @@ function App() {
           </PrivateRoute>
         }>
           {/* route for all loggedin users */}
-          <Route path="/dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/add-course" element={<AddCourse />} />
+          <Route path="dashboard/my-courses" element={<MyCourse />} />
         </Route>
 
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

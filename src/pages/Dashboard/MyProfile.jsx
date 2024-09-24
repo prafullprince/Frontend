@@ -13,7 +13,7 @@ const MyProfile = () => {
   return (
     <div className='flex flex-col gap-20'>
     {/* heading */}
-      <h1 className="mb-14 text-3xl font-medium text-richblack-5">
+      <h1 className="mb-6 text-3xl font-medium text-richblack-5">
         My Profile
       </h1>
 
@@ -25,7 +25,7 @@ const MyProfile = () => {
             <img src={image} alt='ProfilePic' className='aspect-square border-r-0 rounded-full' />
           </div>
           <div className='flex flex-col gap-[2px]'>
-            <p className='text-white'>{user.firstName}</p>
+            <p className='text-white'>{user?.firstName} {" "} {user?.lastName}</p>
             <p className='text-richblack-400'>{user.email}</p>
           </div>
         </div>
