@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Homepage/HomePage";
 import Signup from "./pages/Auth/Signup";
@@ -10,12 +10,20 @@ import PrivateRoute from './components/common/PrivateRoute';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyProfile from './pages/Dashboard/MyProfile';
 import Error from './pages/Error/Error';
-import AddCourse from "./pages/Dashboard/AddCourse";
+// import AddCourse from "./pages/Dashboard/AddCourse";
 import MyCourse from "./pages/Dashboard/MyCourse";
 import Catalog from "./pages/Catalog";
+import AddCourse from "./components/core/AddCourse";
+
 
 
 function App() {
+
+  // const {pathname} = useLocation();
+  // console.log("location of path is",pathname);
+
+  
+
   return (
     <div className="flex flex-col font-inter bg-richblack-900 w-screen min-h-screen">
       <Navbar />
