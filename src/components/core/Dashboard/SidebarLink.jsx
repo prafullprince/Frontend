@@ -14,7 +14,7 @@ const SidebarLink = ({ name,paths,iconName }) => {
     <div>
       <Link to={paths}>
         <div className={`flex text-richblack-300 gap-x-3 items-center text-md px-6 font-inter font-medium py-2
-                        ${matchRoute(paths) ? "bg-[#3D2A01] text-[#fadc4a] border-l-[2px] border-l-yellow-5" : "text-[#838894]"} `}>
+                        ${matchRoute(paths) ? "bg-[#3D2A01] text-[#efd032] border-l-[2px] border-l-yellow-5" : "text-[#838894]"} `}>
           {/* icon */}
           <Icon />
           {/* name */}
