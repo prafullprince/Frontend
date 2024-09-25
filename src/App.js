@@ -12,6 +12,7 @@ import MyProfile from './pages/Dashboard/MyProfile';
 import Error from './pages/Error/Error';
 import AddCourse from "./pages/Dashboard/AddCourse";
 import MyCourse from "./pages/Dashboard/MyCourse";
+import Catalog from "./pages/Catalog";
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/about" element={<AboutPage />} />
+
+        <Route path="/catalog/:catalogName" element={<Catalog />} />
 
         {/* privateRoutes */}
         <Route element={

@@ -5,7 +5,8 @@ const BASE_URL = "http://localhost:4000/api/v1"
                                         // endpoints
 // categories
 export const categories = {
-    SHOW_ALL_CATEGORIES : BASE_URL + "/course/getAllCategory"
+    SHOW_ALL_CATEGORIES : BASE_URL + "/course/getAllCategory",
+    GET_SINGLE_CATOGORIES : BASE_URL + "/course/getSingleCategory"
 }
 
 // AUTH ENDPOINTS
@@ -16,3 +17,4 @@ export const authentication = {
     RESETPASSTOKEN_API: BASE_URL + "/auth/reset-password-token",
     RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
 }
+

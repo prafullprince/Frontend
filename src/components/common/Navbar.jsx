@@ -45,7 +45,7 @@ const Navbar = () => {
   },[])
 
   return (
-    <div className="flex h-14 items-center justify-center shadow-2xl bg-richblack-900 border-b border-richblack-700">
+    <div className="flex h-16 items-center justify-center shadow-2xl bg-richblack-900 border-b border-richblack-700">
       <div className="w-11/12 max-w-6xl flex items-center justify-between mx-auto">
         {/* logo */}
         <Link to={"/"}>
@@ -68,7 +68,7 @@ const Navbar = () => {
                         subLinks.length > 0 ? (
                           subLinks.map(
                             (category,index)=>(
-                              <Link to={`/catalog/${category.name.split(" ").join("-").toLowerCase()}`} className="border rounded-lg px-4 py-1" key={index}>
+                              <Link to={`/catalog/${category.name.split(" ").join("-").toLowerCase()}`} className="border-0 transition-all duration-200 hover:bg-richblack-300 hover:text-white rounded-lg px-4 py-2" key={index}>
                                 {category.name}
                               </Link>
                             )
