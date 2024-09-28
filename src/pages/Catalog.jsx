@@ -71,7 +71,11 @@ const Catalog = () => {
             <p>Most Popular</p>
             <p>New</p>
           </div>
-          <CourseSlider courseData={catalogCourseData?.allCourses} />
+          {
+   
+            <CourseSlider courseData={catalogCourseData?.allCourses} />
+                                
+          }
         </div>
         {/* section 2 */}
         <div>

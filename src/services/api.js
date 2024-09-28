@@ -18,3 +18,10 @@ export const authentication = {
     RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
 }
 
+export const courses = {
+    COURSE_PAGE_DETAILS: BASE_URL + "/course/GetSingleCourseDetails",
+    CREATE_COURSE: BASE_URL + "/course/createCourse",
+    CREATE_SECTION: BASE_URL + "/course/createSection",
+    UPDATE_SECTION: BASE_URL + "/course/updateSection",
+    CREATE_SUB_SECTION: BASE_URL + "/course/createSubSection"
+}

@@ -4,28 +4,31 @@ import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 
 const CourseSlider = ({ courseData }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide:2,
+    initialSlide:1,
     autoplay:false
   }
+
+  console.log("courseData",courseData);
 
   return (
     <div className="mt-6">
       <div>
         <Slider {...settings}>
           {courseData?.map((course, index) => (
-            <div className="flex flex-col gap-1" key={index}>
+            <Link to={`/course/${course._id}`} className="flex flex-col gap-2 w-full" key={index}>
               {/* img */}
-              <div className="border-[1px] rounded-lg max-w-[380px] shadow-lg">
+              <div className="border-[1px] rounded-lg shadow-lg">
                 <img
                   src={course.thumbnail}
                   alt="course"
@@ -33,7 +36,7 @@ const CourseSlider = ({ courseData }) => {
                 />
               </div>
               {/* desc */}
-              <div className="text-[#F1F2FF] text-[18px] font-medium mt-4 max-w-[380px]">
+              <div className="text-[#F1F2FF] text-[18px] font-medium mt-4 flex justify-start max-w-[360px]">
                 {course.whatYouWillLearn}
               </div>
               {/* name */}
@@ -43,7 +46,7 @@ const CourseSlider = ({ courseData }) => {
                 <PiCurrencyInr className="font-bold" />
                 {course.price}
               </div>
-            </div>
+            </Link>
           ))}
         </Slider>
       </div>

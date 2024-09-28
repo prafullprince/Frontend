@@ -10,10 +10,10 @@ import PrivateRoute from './components/common/PrivateRoute';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyProfile from './pages/Dashboard/MyProfile';
 import Error from './pages/Error/Error';
-// import AddCourse from "./pages/Dashboard/AddCourse";
 import MyCourse from "./pages/Dashboard/MyCourse";
 import Catalog from "./pages/Catalog";
 import AddCourse from "./components/core/AddCourse";
+import CoursePageDetails from "./pages/Course/CoursePageDetails";
 
 
 
@@ -37,6 +37,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
 
         <Route path="/catalog/:catalogName" element={<Catalog />} />
+        <Route path="/course/:courseId" element={<CoursePageDetails />} />
 
         {/* privateRoutes */}
         <Route element={

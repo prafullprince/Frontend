@@ -2,10 +2,15 @@ import React from "react";
 import { FaCheck } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import CourseInformationForm from "./CourseInformation/CourseInformationForm";
+import CourseBuilderForm from "./CourseBuilder/CourseBuilderForm";
+import PublishCourseForm from "./PublishCourse/PublishCourseForm";
+
 
 const RenderSteps = () => {
   const { step } = useSelector((state) => state.course);
+  localStorage.setItem("step",JSON.stringify(step));
 
+  console.log("renderStep",step);
   const steps = [
     {
       id: 1,
@@ -32,7 +37,7 @@ const RenderSteps = () => {
                   step === item.id
                     ? "bg-yellow-900 border-yellow-50 text-yellow-50"
                     : "border-richblack-700 bg-richblack-800 text-richblack-300"
-                } ${step > item.id && "text-yellow-50 bg-yellow-50"}`}
+                } ${step > item.id && "text-yellow-900 bg-yellow-50 font-bold text-xl"}`}
               >
                 {step > item.id ? <FaCheck /> : item.id}
               </div>
@@ -74,8 +79,8 @@ const RenderSteps = () => {
 
       {/* render components */}
       {step === 1 && <CourseInformationForm />}
-      {step === 2 && <CourseInformationForm />}
-      {step === 3 && <CourseInformationForm />}
+      {step === 2 && <CourseBuilderForm />}
+      {step === 3 && <PublishCourseForm />}
     </>
   );
 };

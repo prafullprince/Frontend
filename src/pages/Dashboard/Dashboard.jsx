@@ -8,9 +8,9 @@ const Dashboard = () => {
 
 
   return (
-    <div className="relative flex min-h-[calc(100vh-3.5rem)] flex-wrap">
+    <div className="relative flex min-h-[calc(100vh-3.5rem)]">
       <Sidebar />
-      <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-hidden">
+      <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
         <div className=' mx-auto w-11/12 py-10 max-w-[1000px]'>
           <Outlet />
         </div>
