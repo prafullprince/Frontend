@@ -8,6 +8,7 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import previewImage from "../../../../assets/Images/frame.png";
 // import { setStep } from "../../../../slices/courseSlice";
 import { addCourseApi } from "../../../../services/courseApiCall";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const CourseInformationForm = () => {
   const dispatch = useDispatch();
@@ -184,7 +185,10 @@ const CourseInformationForm = () => {
           {thumbnail ? (
             <img src={URL.createObjectURL(thumbnail)} alt="thumbnail" />
           ) : (
-            <img src={previewImage} alt="thumbnail" />
+            <div>
+              <img src={previewImage} alt="thumbnail" className="relative"/>
+              <AiOutlinePlus className="absolute text-white" />
+            </div>
           )}
           <input
             type="file"

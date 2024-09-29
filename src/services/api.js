@@ -23,5 +23,6 @@ export const courses = {
     CREATE_COURSE: BASE_URL + "/course/createCourse",
     CREATE_SECTION: BASE_URL + "/course/createSection",
     UPDATE_SECTION: BASE_URL + "/course/updateSection",
-    CREATE_SUB_SECTION: BASE_URL + "/course/createSubSection"
+    CREATE_SUB_SECTION: BASE_URL + "/course/createSubSection",
+    DELETE_SUB_SECTION: BASE_URL + "/course/deleteSubSection"
 }

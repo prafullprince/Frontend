@@ -43,10 +43,7 @@ const CourseBuilderForm = () => {
 
     }
     else{
-      let result = await createSection(name,course._id,token);
-      if(result){
-        dispatch(setCourse(result));
-      }
+      let result = await createSection(name,course._id,token,dispatch);
       console.log("updatedCourse",result);
       setName("");
     }
@@ -99,8 +96,8 @@ const CourseBuilderForm = () => {
 
       {/* buttons */}
       <div className='flex justify-end gap-4 items-center' >
-        <button className='px-4 py-1 bg-richblack-900 text-lg font-normal text-richblack-100 rounded-lg' onClick={goBack}>Back</button>
-        <button className='px-3 font-normal py-0 bg-yellow-25 text-black rounded-lg' onClick={goNext}>Next</button>
+        <button className='px-4 py-2 bg-richblack-900 text-lg font-normal text-richblack-100 rounded-lg' onClick={goBack}>Back</button>
+        <button className='px-4 font-semibold py-2 bg-yellow-25 text-black rounded-lg' onClick={goNext}>Next</button>
       </div>
 
     </div>

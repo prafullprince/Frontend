@@ -3,7 +3,6 @@ import { apiConnector } from "./apiConnector";
 import { categories, courses } from "./api";
 import { setCourse, setStep } from "../slices/courseSlice";
 
-
 // courseOfSelectectedCategory
 export async function categoryCourses(categoryId){
         const tid = toast.loading("Loading...");
@@ -69,7 +68,6 @@ export async function addCourseApi(name,description,whatYouWillLearn,price,tag,i
         dispatch(setCourse(res));
         localStorage.setItem("course",JSON.stringify(res));
         dispatch(setStep(2));
-        // localStorage.setItem("step",JSON.stringify(step));
         toast.success("Course Created Successfully");
     }
     catch(error){
@@ -81,7 +79,7 @@ export async function addCourseApi(name,description,whatYouWillLearn,price,tag,i
 
 
 // createSection
-export async function createSection(name,courseId,token){
+export async function createSection(name,courseId,token,dispatch){
     const tid = toast.loading("...Loading");
     let res = null;
     try{
@@ -97,6 +95,9 @@ export async function createSection(name,courseId,token){
         res = result?.data?.updatedCourse;
 
         // localStorage.setItem("step",JSON.stringify(step));
+        
+        dispatch(setCourse(res));
+        localStorage.setItem("course",JSON.stringify(res));
         toast.success("Section Created Successfully");
     }
     catch(error){
@@ -108,7 +109,7 @@ export async function createSection(name,courseId,token){
 
 
 // createSubSection
-export async function createSubSection(title,description,sectionId,video,courseId,token){
+export async function createSubSection(title,description,sectionId,video,courseId,token,dispatch){
     const tid = toast.loading("...Loading");
     let res = null;
     try{
@@ -123,11 +124,42 @@ export async function createSubSection(title,description,sectionId,video,courseI
 
         res = result?.data?.updatedCourse;
 
+        dispatch(setCourse(res));
+        localStorage.setItem("course",JSON.stringify(res));
         toast.success("SubSection Created Successfully");
     }
     catch(error){
         console.log(error);
         toast.error("Not good");
+    }
+    toast.dismiss(tid);
+    return res;
+}
+
+
+
+// deleteSubSection
+export async function deleteSubSection(subSectionId,sectionId,courseId,token,dispatch){
+    const tid = toast.loading("Loading...");
+    let res = null;
+    try{
+        const result = await apiConnector("POST",courses?.DELETE_SUB_SECTION,{subSectionId,sectionId,courseId},{
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        });
+
+        if(!result?.data?.success){
+            toast.error(result.data.message);
+        }
+
+
+        res = result?.data?.updatedCourse;
+        dispatch(setCourse(res));
+        localStorage.setItem("course",JSON.stringify(res));
+        toast.success("Sub Section deleted successfully");
+    }
+    catch(error){
+        console.log(error);
     }
     toast.dismiss(tid);
     return res;

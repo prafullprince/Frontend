@@ -6,6 +6,10 @@ import { PiLineVerticalLight } from "react-icons/pi";
 import { RxDropdownMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import SubSectionModal from "../../../common/Modal/SubSectionModal";
+import { deleteSubSection } from "../../../../services/courseApiCall";
+import ConfirmationModal from "../../../common/ConfirmationModal";
+import DeleteConfirmationModal from "../../../common/Modal/DeleteConfirmationModal";
+
 
 const NestedView = () => {
   // hook
@@ -13,13 +17,20 @@ const NestedView = () => {
 
   // store
   const { course } = useSelector((state) => state.course);
-  // const { token } = useSelector((state) => state.auth);
+  const { token } = useSelector((state) => state.auth);
 
-    // state
-
+  // state
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [subSectionModal,setSubSectionModal] = useState(null);
 
+
+  async function deleteSubSectionHandler(subSectionId,sectionId,courseId){
+    const results = await deleteSubSection(subSectionId,sectionId,courseId,token,dispatch);
+    if(results){
+      console.log("del: ",results);
+    }
+    setConfirmationModal(null);
+  }
 
 
   return (
@@ -32,25 +43,14 @@ const NestedView = () => {
               {/* left */}
               <div className="flex gap-3 items-center">
                 <RxDropdownMenu />
-                <p className="text-lg">{section?.name}</p>
+                <p className="text-sm">{section?.name}</p>
               </div>
               {/* right */}
               <div className="flex gap-1 items-center">
                 <button>
                   <MdEdit />
                 </button>
-                <button
-                  onClick={() => {
-                    setConfirmationModal({
-                      text1: "Are your sure ?",
-                      text2: "All lecture of this section will be deleted",
-                      btn1Text: "Delete",
-                      btn2Text: "Cancel",
-                      btn1Handler: () => dispatch(),
-                      btn2Handler: () => setConfirmationModal(null),
-                    });
-                  }}
-                >
+                <button>
                   <MdDelete />
                 </button>
                 <PiLineVerticalLight />
@@ -66,26 +66,27 @@ const NestedView = () => {
                   onClick={() => {
                     // setViewSubSection(subSec);
                   }}
-                  className="flex items-center gap-x-3 border-b-2 ml-3"
+                  className="flex items-center justify-between gap-x-3 border-b-2 ml-10 mr-6 border-b-richblack-400 mb-1"
                 >
                   {/* left */}
-                  <div className="flex gap-3 items-center">
-                    <RxDropdownMenu />
-                    <p className="text-lg">{subSec?.title}</p>
+                  <div className="flex gap-3 items-center ml-2">
+                    <RxDropdownMenu className="text-lg" />
+                    <p className="text-md">{subSec?.title}</p>
                   </div>
                   {/* right */}
-                  <div className="flex gap-1 items-center">
+                  <div className="flex gap-2 items-center mr-2">
                     <button>
                       <MdEdit />
                     </button>
                     <button
+                        //  onClick={()=>{deleteSubSectionHandler(subSec?._id,section?._id,course?._id)}}
                       onClick={() => {
                         setConfirmationModal({
                           text1: "Are your sure ?",
                           text2: "lecture of this subSection will be deleted",
                           btn1Text: "Delete",
                           btn2Text: "Cancel",
-                          btn1Handler: () => dispatch(),
+                          btn1Handler: () => dispatch(deleteSubSectionHandler(subSec?._id,section?._id,course?._id)),
                           btn2Handler: () => setConfirmationModal(null),
                         });
                       }}
@@ -115,6 +116,9 @@ const NestedView = () => {
             subSectionModal && (
                 <SubSectionModal modalData={subSectionModal} setModalData={setSubSectionModal} />
             )
+        }
+        {
+          confirmationModal && (<ConfirmationModal modalData={confirmationModal} />)
         }
 
 

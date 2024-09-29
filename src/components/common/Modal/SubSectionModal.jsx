@@ -38,9 +38,9 @@ const SubSectionModal = ({ modalData, setModalData }) => {
   // submitHandler
   async function submitHandler(e){
     e.preventDefault();
-    const res = await createSubSection(formData.title,formData.description,modalData.sectionId,video,modalData.courseId,token);
+    const res = await createSubSection(formData.title,formData.description,modalData.sectionId,video,modalData.courseId,token,dispatch);
     console.log("updatedSubSectionCourse",res);
-    dispatch(setCourse(res));
+
     setModalData(null);
   }
 
