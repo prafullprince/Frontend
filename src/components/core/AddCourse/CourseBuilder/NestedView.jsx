@@ -5,10 +5,9 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { PiLineVerticalLight } from "react-icons/pi";
 import { RxDropdownMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import SubSectionModal from "../../../common/Modal/SubSectionModal";
+import SubSectionModal from "../../../common/SubSectionModal";
 import { deleteSubSection } from "../../../../services/courseApiCall";
 import ConfirmationModal from "../../../common/ConfirmationModal";
-import DeleteConfirmationModal from "../../../common/Modal/DeleteConfirmationModal";
 
 
 const NestedView = () => {
@@ -21,17 +20,21 @@ const NestedView = () => {
 
   // state
   const [confirmationModal, setConfirmationModal] = useState(null);
-  const [subSectionModal,setSubSectionModal] = useState(null);
+  const [subSectionModal, setSubSectionModal] = useState(null);
 
-
-  async function deleteSubSectionHandler(subSectionId,sectionId,courseId){
-    const results = await deleteSubSection(subSectionId,sectionId,courseId,token,dispatch);
-    if(results){
-      console.log("del: ",results);
+  async function deleteSubSectionHandler(subSectionId, sectionId, courseId) {
+    const results = await deleteSubSection(
+      subSectionId,
+      sectionId,
+      courseId,
+      token,
+      dispatch
+    );
+    if (results) {
+      console.log("del: ", results);
     }
     setConfirmationModal(null);
   }
-
 
   return (
     <div className="text-white bg-richblack-700 rounded-lg mt-6">
@@ -79,14 +82,20 @@ const NestedView = () => {
                       <MdEdit />
                     </button>
                     <button
-                        //  onClick={()=>{deleteSubSectionHandler(subSec?._id,section?._id,course?._id)}}
                       onClick={() => {
                         setConfirmationModal({
                           text1: "Are your sure ?",
                           text2: "lecture of this subSection will be deleted",
                           btn1Text: "Delete",
                           btn2Text: "Cancel",
-                          btn1Handler: () => dispatch(deleteSubSectionHandler(subSec?._id,section?._id,course?._id)),
+                          btn1Handler: () =>
+                            dispatch(
+                              deleteSubSectionHandler(
+                                subSec?._id,
+                                section?._id,
+                                course?._id
+                              )
+                            ),
                           btn2Handler: () => setConfirmationModal(null),
                         });
                       }}
@@ -98,30 +107,29 @@ const NestedView = () => {
               ))}
               {/* Add lecture button */}
               <button
-                    onClick={()=>setSubSectionModal({
-                        courseId:course._id,
-                        sectionId:section._id,
-                    })}
-              className="mt-4 flex items-center gap-x-2 text-yellow-50 ml-6 mb-2">
+                onClick={() =>
+                  setSubSectionModal({
+                    courseId: course._id,
+                    sectionId: section._id,
+                  })
+                }
+                className="mt-4 flex items-center gap-x-2 text-yellow-50 ml-6 mb-2"
+              >
                 <AiOutlinePlus />
                 <p>Add lecture</p>
               </button>
             </div>
-
           </details>
         ))}
       </div>
 
-        {
-            subSectionModal && (
-                <SubSectionModal modalData={subSectionModal} setModalData={setSubSectionModal} />
-            )
-        }
-        {
-          confirmationModal && (<ConfirmationModal modalData={confirmationModal} />)
-        }
-
-
+      {subSectionModal && (
+        <SubSectionModal
+          modalData={subSectionModal}
+          setModalData={setSubSectionModal}
+        />
+      )}
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   );
 };

@@ -1,15 +1,14 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import previewImage from "../../../assets/Images/frame.png";
-import { apiConnector } from "../../../services/apiConnector";
-import { createSubSection } from "../../../services/courseApiCall";
-import { setCourse } from "../../../slices/courseSlice";
+import previewImage from "../../assets/Images/frame.png";
+
+import { createSubSection } from "../../services/courseApiCall";
+
 
 const SubSectionModal = ({ modalData, setModalData }) => {
   const imgRef = useRef(null);
 
   const dispatch = useDispatch();
-  const { course } = useSelector((state) => state.course);
   const { token } = useSelector((state) => state.auth);
 
 

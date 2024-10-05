@@ -3,7 +3,7 @@ import { IoAddCircleOutline } from 'react-icons/io5';
 import { MdEdit } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import NestedView from './NestedView';
-import { setCourse, setEditCourse, setStep } from '../../../../slices/courseSlice';
+import { setEditCourse, setStep } from '../../../../slices/courseSlice';
 import { createSection } from '../../../../services/courseApiCall';
 
 const CourseBuilderForm = () => {
