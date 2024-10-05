@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "./apiConnector";
-import { categories, courses } from "./api";
+import { categories, coursess } from "./api";
 import { setCourse, setStep } from "../slices/courseSlice";
 
 // courseOfSelectectedCategory
@@ -32,7 +32,7 @@ export async function coursePageDetail(courseId){
     const tid = toast.loading("...Loading");
     let res;
     try{
-        const result = await apiConnector("POST",courses.COURSE_PAGE_DETAILS,{courseId});
+        const result = await apiConnector("POST",coursess.COURSE_PAGE_DETAILS,{courseId});
 
         if(!result?.data?.success){
             toast.error("Error in Course Api call");
@@ -54,7 +54,7 @@ export async function addCourseApi(name,description,whatYouWillLearn,price,tag,i
     const tid = toast.loading("...Loading");
     let res = null;
     try{
-        const result = await apiConnector("POST",courses.CREATE_COURSE,{name,description,whatYouWillLearn,price,tag,instructions,category,thumbnail},{
+        const result = await apiConnector("POST",coursess.CREATE_COURSE,{name,description,whatYouWillLearn,price,tag,instructions,category,thumbnail},{
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
@@ -83,7 +83,7 @@ export async function createSection(name,courseId,token,dispatch){
     const tid = toast.loading("...Loading");
     let res = null;
     try{
-        const result = await apiConnector("POST",courses.CREATE_SECTION,{name,courseId},{
+        const result = await apiConnector("POST",coursess.CREATE_SECTION,{name,courseId},{
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
@@ -113,7 +113,7 @@ export async function createSubSection(title,description,sectionId,video,courseI
     const tid = toast.loading("...Loading");
     let res = null;
     try{
-        const result = await apiConnector("POST",courses?.CREATE_SUB_SECTION,{title,description,sectionId,video,courseId},{
+        const result = await apiConnector("POST",coursess?.CREATE_SUB_SECTION,{title,description,sectionId,video,courseId},{
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
@@ -143,7 +143,7 @@ export async function deleteSubSection(subSectionId,sectionId,courseId,token,dis
     const tid = toast.loading("Loading...");
     let res = null;
     try{
-        const result = await apiConnector("POST",courses?.DELETE_SUB_SECTION,{subSectionId,sectionId,courseId},{
+        const result = await apiConnector("POST",coursess?.DELETE_SUB_SECTION,{subSectionId,sectionId,courseId},{
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });

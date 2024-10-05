@@ -30,9 +30,9 @@ const Navbar = () => {
     try {
         // api call
         const result = await apiConnector("GET",categories.SHOW_ALL_CATEGORIES);
-        console.log(result);
+        // console.log(result);
         const dataArray = result.data.response;
-        console.log(dataArray);
+        // console.log(dataArray);
         setSubLinks(dataArray);
 
     } catch (error) {

@@ -1,42 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { coursePageDetail } from '../../services/courseApiCall';
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { buyCourse } from '../../services/paymentsApiCall';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 const CoursePageDetails = () => {
 
+  const { token } = useSelector((state)=>state.auth);
+  const { user } = useSelector((state)=>state.profile);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { courseId } = useParams();
 
-  const [courseDetails,setCourseDetails] = useState({});
-  // const [courseContent,setCourseContent] = useState([]);
-
-  
-  useEffect(()=>{
-    const courseDetailss = async ()=>{
-      const res = await coursePageDetail(courseId);
-      setCourseDetails(res?.response);
-      // setCourseContent(res?.response?.courseContent);
-      console.log("resres",res?.response);
+  function handleBuyCourse(){
+    if(token){
+      buyCourse(courseId,token,user,navigate,dispatch);
     }
-    courseDetailss();
-  },[courseId]);
+  }
 
-  console.log("courseDetails",courseDetails);
 
   return (
-    <div className="text-white">
-      {/* <div>{courseDetails.message}</div>
-      <div>{courseDetails.description}</div>
-      <div>{courseDetails.category.description}</div>
-      <div className='flex gap-6'>
-        {
-          courseContent.map((section,index)=>(
-            <div key={index}>
-              <p>{section.name}</p>
-            </div>
-          ))
-        }
-      </div> */}
-      HII
+    <div className="text-white flex justify-center items-center mt-52 gap-8 flex-col">
+      <p className="text-xl font-semibold">Hii puchase needed course</p>
+      <div>
+        <button className="flex px-4 py-2 font-semibold text-lg bg-yellow-50 rounded-lg text-black" onClick={()=>handleBuyCourse()}>Buy Now</button>
+      </div>
     </div>
   )
 }
