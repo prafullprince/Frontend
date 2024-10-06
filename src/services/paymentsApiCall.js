@@ -57,9 +57,9 @@ export async function buyCourse(
     // opening the razorpay SDK
     const options = {
       key: "rzp_test_sK1gtaCq17ERAl",
-      currency: orderResponse.data.currency,
-      amount: orderResponse.data.amount,
-      order_id: orderResponse.data.id,
+      currency: orderResponse.data.paymentResponse.currency,
+      amount: orderResponse.data.paymentResponse.amount,
+      order_id: orderResponse.data.paymentResponse.id,
       name: "StudyNotion",
       description: "Thank you for purchasing",
       image: rzpLogo,
@@ -69,7 +69,6 @@ export async function buyCourse(
       },
       handler: function(response) {
         console.log("responseHandler: ",response);
-        console.log("responseHandler2: ",response.razorpay_signature);
 
         // send successfullyMail
         // sendPaymentSuccessEmail(response, orderResponse.data.amount, token);
@@ -95,7 +94,6 @@ export async function buyCourse(
 
 async function verifyPayment(courseId,razorpay_payment_id,razorpay_order_id,razorpay_signature, token, navigate, dispatch) {
   const toastId = toast.loading("Verifying Payment...");
-  // dispatch(setPaymentLoading(true))
   try {
     const response = await apiConnector(
       "POST",
