@@ -1,8 +1,6 @@
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/Homepage/HomePage";
-import Signup from "./pages/Auth/Signup";
-import Login from "./pages/Auth/Login";
+import { lazy, Suspense } from "react";
 import Navbar from "./components/common/Navbar";
 import VerifyEmail from "./pages/Auth/VerifyEmail";
 import AboutPage from "./pages/AboutPage/AboutPage";
@@ -14,6 +12,11 @@ import MyCourse from "./pages/Dashboard/MyCourse";
 import Catalog from "./pages/Catalog";
 import AddCourse from "./components/core/AddCourse";
 import CoursePageDetails from "./pages/Course/CoursePageDetails";
+import Contact from "./pages/ContactLear/Contact";
+const Login = lazy(()=>import("./pages/Auth/Login"));
+const HomePage = lazy(()=>import("./pages/Homepage/HomePage"));
+const Signup = lazy(()=>import("./pages/Auth/Signup"));
+
 
 
 
@@ -30,11 +33,14 @@ function App() {
 
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Suspense fallback="loading..." >
+          <HomePage />
+        </Suspense>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<Contact />} />
 
         <Route path="/catalog/:catalogName" element={<Catalog />} />
         <Route path="/course/:courseId" element={<CoursePageDetails />} />

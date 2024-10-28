@@ -3,6 +3,8 @@ import { apiConnector } from "./apiConnector";
 import { coursess } from "./api";
 import rzpLogo from "../assets/Logo/Logo-Full-Light.png";
 
+
+// load razorpay script
 function loadScript(src) {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -48,13 +50,11 @@ export async function buyCourse(
         Authorization: `Bearer ${token}`,
       }
     );
-    console.log("orderResponse: ",orderResponse);
-
     if (!orderResponse.data.success) {
       throw new Error("error order");
     }
 
-    // opening the razorpay SDK
+    // opening the razorpay SDK/creating dialogue box
     const options = {
       key: "rzp_test_sK1gtaCq17ERAl",
       currency: orderResponse.data.paymentResponse.currency,
@@ -92,6 +92,7 @@ export async function buyCourse(
   toast.dismiss(tid);
 }
 
+// verify payment function
 async function verifyPayment(courseId,razorpay_payment_id,razorpay_order_id,razorpay_signature, token, navigate, dispatch) {
   const toastId = toast.loading("Verifying Payment...");
   try {
@@ -120,6 +121,7 @@ async function verifyPayment(courseId,razorpay_payment_id,razorpay_order_id,razo
   toast.dismiss(toastId);
 }
 
+// sendPaymentSuccessfull mail
 async function sendPaymentSuccessEmail(response, amount, token) {
   try {
     await apiConnector(
